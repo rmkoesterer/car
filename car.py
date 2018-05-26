@@ -9,7 +9,7 @@ import os.path
 
 HOST, PORT = 'localhost', 6600
 SKIPSIZE = 1
-TTSDIR="/home/pi/tts"
+TTSDIR="/home/rmkoesterer/car/tts"
 VALIDKEYCODES = ["KEY_D","KEY_PLAYPAUSE","KEY_STOPCD","KEY_B","KEY_F","KEY_PREVIOUSSONG","KEY_LEFT","KEY_NEXTSONG","KEY_RIGHT","KEY_UP","KEY_DOWN","KEY_PAGEDOWN","KEY_PAGEUP","KEY_HOME","KEY_F3","KEY_F4","KEY_F6"]
 VALIDSEARCHKEYS = ["KEY_1","KEY_2","KEY_3","KEY_4","KEY_5","KEY_6","KEY_7","KEY_8","KEY_9","KEY_0"]
 TX = [('abc','2'),('def','3'),('ghi','4'),('jkl','5'),('mno','6'),('pqrs','7'),('tuv','8'),('wxyz','9')]
@@ -224,7 +224,7 @@ def search_mode(uids):
 		speak(["no_other_artists_found"])
 		toggleplay()
 		return
-	speak(["search_mode","search_mode_prompt"])
+	speak(["search_mode"])
 	UID=""
 	while len(selected) > 1:
 		r, w, x = select(remotes, [], [])
@@ -272,6 +272,8 @@ def main(args=None):
 
 	for remote in remotes:
 		print "found input device " + remotes[remote].__fspath__() + "\n  name: " + remotes[remote].name + "\n  phys: " + remotes[remote].phys
+
+	speak(["hello","im_listening"])
 
 	dbfull = list_all()
 	dbdirs = [a['directory'] for a in dbfull if 'directory' in a]
